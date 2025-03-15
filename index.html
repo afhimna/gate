@@ -31,10 +31,6 @@
       to { width: 100%; }
     }
 
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
     body {
       display: flex;
       flex-direction: column;
@@ -61,10 +57,15 @@
       font-size: 15px;
       white-space: nowrap;
       overflow: hidden;
-      border-right: 3px solid;
       width: 100%;
       display: inline-block;
-      animation: typing 3s steps(40, end), blink 0.8s infinite, glowColor 4s infinite alternate;
+      animation: typing 3s steps(40, end) forwards, glowColor 4s infinite alternate;
+      border-right: 3px solid #0ff; /* Efek kursor awal */
+    }
+
+    /* Setelah animasi selesai, hilangkan kursor */
+    .profile-caption.typed {
+      border-right: none;
     }
 
     .link-button {
@@ -133,6 +134,14 @@
 </div>
 
 <p class="copyright">© 2025 Afhimna Corp. All Rights Reserved.</p>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+      document.querySelector(".profile-caption").classList.add("typed");
+    }, 3000); // Sesuai durasi animasi typing (3s)
+  });
+</script>
 
 </body>
 </html>
